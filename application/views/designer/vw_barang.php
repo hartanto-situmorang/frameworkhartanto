@@ -1,62 +1,128 @@
-<!-- partial -->
-<div class="container-fluid page-body-wrapper">
-    <div style="margin-top: 2%;" class="container">
-        <div class="semua wrrr">
-            <div class="semua konten">
-                <img src="<?= base_url('aset/') ?>images/barang/baju3.jpg" alt='profile image' class="produk">
-                <h2 class="nama">Anna Marie</h2>
-                <p class="semua deskripsi">sdfjffji idofjl </p>
-                <button class='semmua tombol'>Beli Barang</button>
-            </div>
-            <div class="semua konten">
-                <img src="<?= base_url('aset/') ?>images/barang/baju5.jpg" alt='profile image' class="produk">
-                <h2 class="nama">Anna Marie</h2>
-                <p class="semua deskripsi">sdfjffji idofjl </p>
-                <button class='semmua tombol'>Beli Barang</button>
-            </div>
-            <div class="semua konten">
-                <img src="<?= base_url('aset/') ?>images/barang/baju1.jpg" alt='profile image' class="produk">
-                <h2 class="nama">Anna Marie</h2>
-                <p class="semua deskripsi">sdfjffji idofjl </p>
-                <button class='semmua tombol'>Beli Barang</button>
-            </div>
-            <div class="semua konten">
-                <img src="<?= base_url('aset/') ?>images/barang/baju7.jpg" alt='profile image' class="produk">
-                <h2 class="nama">Anna Marie</h2>
-                <p class="semua deskripsi">sdfjffji idofjl </p>
-                <button class='semmua tombol'>Beli Barang</button>
-            </div>
-            <div class="semua konten">
-                <img src="<?= base_url('aset/') ?>images/barang/baju2.jpg" alt='profile image' class="produk">
-                <h2 class="nama">Anna Marie</h2>
-                <p class="semua deskripsi">sdfjffji idofjl </p>
-                <button class='semmua tombol'>Beli Barang</button>
-            </div>
-            <div class="semua konten">
-                <img src="<?= base_url('aset/') ?>images/barang/baju9.jpg" alt='profile image' class="produk">
-                <h2 class="nama">Anna Marie</h2>
-                <p class="semua deskripsi">sdfjffji idofjl </p>
-                <button class='semmua tombol'>Beli Barang</button>
-            </div>
-            <div class="semua konten">
-                <img src="<?= base_url('aset/') ?>images/barang/celana7.jpg" alt='profile image' class="produk">
-                <h2 class="nama">Anna Marie</h2>
-                <p class="semua deskripsi">sdfjffji idofjl </p>
-                <button class='semmua tombol'>Beli Barang</button>
-            </div>
-            <div class="semua konten">
-                <img src="<?= base_url('aset/') ?>images/barang/celana2.jpg" alt='profile image' class="produk">
-                <h2 class="nama">Anna Marie</h2>
-                <p class="semua deskripsi">sdfjffji idofjl </p>
-                <button class='semmua tombol'>Beli Barang</button>
-            </div>
-            <div class="semua konten">
-                <img src="<?= base_url('aset/') ?>images/barang/celana9.jpg" alt='profile image' class="produk">
-                <h2 class="nama">Anna Marie</h2>
-                <p class="semua deskripsi">sdfjffji idofjl </p>
-                <button class='semmua tombol'>Beli Barang</button>
+<div style="padding: 0 2% 0 5%;" >
+    <div class="blog-posts">
+        <div class="post">
+            <img src="<?= base_url('aset/') ?>images/barang/baju1.jpg" alt="" class="post-img">
+            <div href="../view/view.php" class="post-content">
+                <h3>
+                    <dt>Headset </dt><br>
+                    <dt>Rp. 150000</dt><br>
+                    
+                </h3>
+                <span class="date">
+                    <div class="cell">
+                        <form method="POST" action="http://localhost/UAS_/aksi/edit_barang">
+                            <input type="hidden" name="nama" value="Headset  ">
+                            <button name="edit" class="badge badge-primary" type="submit">Beli</button>
+                        </form>
+                    </div>
+                </span>
             </div>
         </div>
-        <!-- page-body-wrapper ends -->
+        <div class="post">
+            <img src="<?= base_url('aset/') ?>images/barang/baju2.jpg" alt="" class="post-img">
+            <div href="../view/view.php" class="post-content">
+                <h3>
+                    <dt>Headset </dt><br>
+                    <dt>Rp. 150000</dt><br>
+                    <dt></dt><br>
+                </h3>
+                <span class="date">
+                    <div class="cell">
+                        <form method="POST" action="http://localhost/UAS_/aksi/edit_barang">
+                            <input type="hidden" name="nama" value="Headset  ">
+                            <button name="edit" class="badge badge-primary" type="submit">Beli</button>
+                        </form>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="post">
+            <img src="<?= base_url('aset/') ?>images/barang/celana1.jpg" alt="" class="post-img">
+            <div href="../view/view.php" class="post-content">
+                <h3>
+                    <dt style="margin: 0;">Headset </dt><br>
+                    <dt>Rp. 150000</dt><br>
+                </h3>
+                <span class="date">
+                    <div class="cell">
+                        <form method="POST" action="http://localhost/UAS_/aksi/edit_barang">
+                            <input type="hidden" name="nama" value="Headset  ">
+                            <button name="edit" class="badge badge-primary" type="submit">Beli</button>
+                        </form>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="post">
+            <img src="<?= base_url('aset/') ?>images/barang/topi1.jpg" alt="" class="post-img">
+            <div href="../view/view.php" class="post-content">
+                <h3>
+                    <dt>Headset </dt><br>
+                    <dt>Rp. 150000</dt><br>
+                    
+                </h3>
+                <span class="date">
+                    <div class="cell">
+                        <form method="POST" action="http://localhost/UAS_/aksi/edit_barang">
+                            <input type="hidden" name="nama" value="Headset  ">
+                            <button name="edit" class="badge badge-primary" type="submit">Beli</button>
+                        </form>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="post">
+            <img src="<?= base_url('aset/') ?>images/barang/baju2.jpg" alt="" class="post-img">
+            <div href="../view/view.php" class="post-content">
+                <h3>
+                    <dt>Headset </dt><br>
+                    <dt>Rp. 150000</dt><br>
+                    <dt></dt><br>
+                </h3>
+                <span class="date">
+                    <div class="cell">
+                        <form method="POST" action="http://localhost/UAS_/aksi/edit_barang">
+                            <input type="hidden" name="nama" value="Headset  ">
+                            <button name="edit" class="badge badge-primary" type="submit">Beli</button>
+                        </form>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="post">
+            <img src="<?= base_url('aset/') ?>images/barang/celana1.jpg" alt="" class="post-img">
+            <div href="../view/view.php" class="post-content">
+                <h3>
+                    <dt style="margin: 0;">Headset </dt><br>
+                    <dt>Rp. 150000</dt><br>
+                </h3>
+                <span class="date">
+                    <div class="cell">
+                        <form method="POST" action="http://localhost/UAS_/aksi/edit_barang">
+                            <input type="hidden" name="nama" value="Headset  ">
+                            <button name="edit" class="badge badge-primary" type="submit">Beli</button>
+                        </form>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="post">
+            <img src="<?= base_url('aset/') ?>images/barang/topi1.jpg" alt="" class="post-img">
+            <div href="../view/view.php" class="post-content">
+                <h3>
+                    <dt>Headset </dt><br>
+                    <dt>Rp. 150000</dt><br>
+                    
+                </h3>
+                <span class="date">
+                    <div class="cell">
+                        <form method="POST" action="http://localhost/UAS_/aksi/edit_barang">
+                            <input type="hidden" name="nama" value="Headset  ">
+                            <button name="edit" class="badge badge-primary" type="submit">Beli</button>
+                        </form>
+                    </div>
+                </span>
+            </div>
+        </div>
     </div>
 </div>

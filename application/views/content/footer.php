@@ -8,4 +8,5 @@
 <script src="<?= base_url('aset/') ?>js/typeahead.js"></script>
 <script src="<?= base_url('aset/') ?>js/select2.js"></script>
 </body>
+
 </html>

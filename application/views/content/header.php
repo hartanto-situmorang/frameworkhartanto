@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="<?= base_url('aset/') ?>vendors/select2/select2.min.css">
     <link rel="stylesheet" href="<?= base_url('aset/') ?>vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('aset/') ?>style.css">
+    <link rel="stylesheet" href="<?= base_url('aset/') ?>styleproduk.css">
     <link rel="stylesheet" href="<?= base_url('aset/') ?>stylecard.css">
-    <link rel="shortcut icon" href="<?= base_url('aset/') ?>images/favicon.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" href="<?= base_url('aset/') ?>images/auth/logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -23,20 +24,24 @@
                 <div style="margin: 10px;" class="container-fluid">
                     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between">
                         <ul class="navbar-nav navbar-nav-left">
+                            <img style="width: 70%;" src="<?= base_url('aset/') ?>images/auth/logo.png" alt="">
+                        </ul>
+                        <ul class="navbar-nav navbar-nav-left">
+                            <img style="width: 90%;" src="<?= base_url('aset/') ?>images/auth/logot.png" alt="">
                         </ul>
                         <ul class="navbar-nav navbar-nav-right">
                             <li class="nav-item nav-profile dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                                     <span class="online-status"></span>
-                                    <img src="<?= base_url('aset/') ?>images/faces/face28.png" alt="profile">
-                                    <span class="nav-profile-name">Johnson</span>
+                                    <img src="<?= base_url('aset/') ?>images/faces/<?= $user['gambar']; ?>" alt="profile">
+                                    <span class="nav-profile-name"><?= $user2['nama']; ?></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                                    <a class="dropdown-item">
-                                        <i class="mdi mdi-settings text-primary"></i>
-                                        Settings
+                                    <a href="<?= base_url('Customer/profile') ?>" class="dropdown-item">
+                                        <i class="mdi mdi-account text-primary"></i>
+                                        Profile
                                     </a>
-                                    <a class="dropdown-item">
+                                    <a href="<?= base_url('Home/logout') ?>" class="dropdown-item">
                                         <i class="mdi mdi-logout text-primary"></i>
                                         Logout
                                     </a>
@@ -138,22 +143,20 @@
                                 </ul>
                             </li>
                         </ul>
-                        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
-                            <span class="mdi mdi-menu"></span>
-                        </button>
+
                     </div>
                 </div>
             </nav>
             <nav class="bottom-navbar">
                 <div class="container">
                     <ul class="nav page-navigation">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../index.html">
+                        <li class="nav-item  <?php if ($header == 'dasboard')  echo 'active'; ?>">
+                            <a class="nav-link" href="<?= base_url('Home') ?>">
                                 <i class="mdi mdi-file-document-box menu-icon"></i>
                                 <span class="menu-title">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item  <?php if ($header == 'berbelanja')  echo 'active'; ?>">
                             <a href="#" class="nav-link">
                                 <i class="mdi mdi-cube-outline menu-icon"></i>
                                 <span class="menu-title">Berbelanja</span>
@@ -161,34 +164,28 @@
                             </a>
                             <div class="submenu">
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?= base_url('Barang_user/pakaian') ?>">Pakaian</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?= base_url('Barang_user/celana') ?>">Celana</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?= base_url('Barang_user/aksesories') ?>">Aksesories</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item active">
-                            <a href="../../pages/forms/basic_elements.html" class="nav-link">
+                        <li class="nav-item  <?php if ($header == 'Designer')  echo 'active'; ?>">
+                            <a href="<?= base_url('Customer/designer') ?>" class="nav-link">
                                 <i class="mdi mdi-chart-areaspline menu-icon"></i>
                                 <span class="menu-title">Designer</span>
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="../../pages/tables/basic-table.html" class="nav-link">
+                        <li class="nav-item  <?php if ($header == 'transaksi')  echo 'active'; ?>">
+                            <a href="<?= base_url('Customer/transaksi') ?>" class="nav-link">
                                 <i class="mdi mdi-grid menu-icon"></i>
                                 <span class="menu-title">Transaksi</span>
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="../../pages/icons/mdi.html" class="nav-link">
-                                <i class="mdi mdi-emoticon menu-icon"></i>
-                                <span class="menu-title">Icons</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../docs/documentation.html" class="nav-link">
+                        <li class="nav-item <?php if ($header == 'tentang')  echo 'active'; ?>">
+                            <a href="<?= base_url('Customer/tentang') ?>" class="nav-link">
                                 <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                                 <span class="menu-title">Tentang Kami</span></a>
                         </li>
