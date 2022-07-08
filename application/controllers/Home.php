@@ -8,19 +8,22 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('User_model', 'userrole');
         $this->load->model('Customer_model', 'customer');
-        $this->load->model('Designer_model', 'designer');
+        $this->load->model('Designer_model', 'Designer');
+        $this->load->model('Barang_model', 'Barang');
+        $this->load->model('User_model', 'akun');
     }
 
     public function index()
     {
         if ($this->session->userdata('role') == 'customer') {
             redirect('Customer');
-        } elseif ($this->session->userdata('role') == 'designer') {
+        } elseif ($this->session->userdata('role') == 'Designer') {
             redirect('Designer');
         } elseif ($this->session->userdata('role') == 'admin') {
             redirect('Admin');
         }
         $data['header'] = 'tentang';
+        $data['designer'] = $this->Designer->get();
         $this->load->view('login/header', $data);
         $this->load->view('admin/about', $data);
         $this->load->view('login/footer', $data);
@@ -30,11 +33,12 @@ class Home extends CI_Controller
     {
         if ($this->session->userdata('role') == 'customer') {
             redirect('Customer');
-        } elseif ($this->session->userdata('role') == 'designer') {
+        } elseif ($this->session->userdata('role') == 'Designer') {
             redirect('Designer');
         } elseif ($this->session->userdata('role') == 'admin') {
             redirect('Admin');
         }
+        $data['Barang'] = $this->Barang->get(); 
         $data['header'] = 'produk';
         $this->load->view('login/header', $data);
         $this->load->view('admin/only_barang', $data);
@@ -72,6 +76,7 @@ class Home extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['header'] = 'none';
+            $data['header'] = 'tentang';
             $this->load->view('login/header', $data);
             $this->load->view('login/regis', $data);
             $this->load->view('login/footer', $data);
@@ -91,8 +96,8 @@ class Home extends CI_Controller
             ];
             if ($this->input->post('role') == 'customer') {
                 $this->customer->insert($data);
-            } elseif ($this->input->post('role') == 'designer') {
-                $this->designer->insert($data);
+            } elseif ($this->input->post('role') == 'Designer') {
+                $this->Designer->insert($data);
             }
             $this->userrole->insert($data2);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat! Akunmu telah berhasil terdaftar, Silahkan Login! </div>');
@@ -102,6 +107,7 @@ class Home extends CI_Controller
 
     public function login()
     {
+        $data['designer'] = $this->Designer->get();
         if ($this->session->userdata('email')) {
             redirect('Home');
         }
@@ -114,6 +120,7 @@ class Home extends CI_Controller
         ]);
         if ($this->form_validation->run() == false) {
             $data['header'] = 'none';
+            $data['header'] = 'tentang';
             $this->load->view('login/header', $data);
             $this->load->view('login/login', $data);
             $this->load->view('login/footer', $data);
@@ -124,6 +131,7 @@ class Home extends CI_Controller
 
     public function login2()
     {
+        $data['designer'] = $this->Designer->get();
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $user = $this->db->get_where('akun', ['email' => $email])->row_array();
@@ -137,7 +145,7 @@ class Home extends CI_Controller
                 $this->session->set_userdata($data);
                 if ($user['role'] == 'customer') {
                     redirect('Customer/profile');
-                } elseif ($user['role'] == 'designer') {
+                } elseif ($user['role'] == 'Designer') {
                     redirect('Designer');
                 } else {
                     redirect('Admin');

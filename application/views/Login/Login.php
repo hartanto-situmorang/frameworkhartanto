@@ -16,12 +16,12 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
                             <input name="email" type="email" class="form-control" id="email" value="<?= set_value('email'); ?>" aria-describedby="emailHelp" placeholder="Masukkan email">
-                            <?= form_error('email','<small class="text-danger">', '</small>'); ?>
+                            <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
                             <input name="password" type="password" class="form-control" value="<?= set_value('password'); ?>" id="password" placeholder="Masukkan Password">
-                            <?= form_error('password','<small class="text-danger">', '</small>'); ?>
+                            <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
                         </div>
                         <button style="width: 100%;" type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -29,63 +29,55 @@
             </div>
         </div>
         <div style="margin: 20px;" class="row">
-            <div class="col-3 grid-margin stretch-card">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-3">
-                            <img style="width: 100%;margin-left: 50%; height: 90%;object-fit: cover;margin-bottom: 10px;border-radius: 50%; " src="<?= base_url('aset/') ?>/images/faces/face1.jpg" alt="">
+            <div style="margin: 0 20 0 20;padding: 1% 5% 1% 5%;">
+                <div class="row">
+                    <?php $i = 0; ?>
+                    <?php foreach ($designer as $des) { ?>
+                        <div class="col col-md-10 col-lg-6 col-xl-3 p-4">
+                            <div style="border-radius: 15px; background-color: #93e2bb;">
+                                <div class="card-body p-3 text-black">
+                                    <div class="d-flex align-items-center mb-6">
+                                        <div class="flex-shrink-0">
+                                            <img src="<?= base_url('aset/') ?>images/faces/<?= $des['gambar']; ?>" alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3" style="width: 70px;">
+                                        </div>
+                                        <div class="flex ms-3">
+                                            <div class="d-flex flex-row align-items-center mb-6">
+                                                <p class="mb-0 me-2"><?= $des['nama'] ?></p>
+                                                <div class="d-flex flex-row align-items-center mb-6 mb-2">
+                                                    <?php
+                                                    $i = 1;
+                                                    if ($des['rating'] != 0) {
+                                                        foreach (range($i, $des['rating']) as $number) {
+                                                            $i++; ?>
+                                                            <p style="margin: 0;color: yellowgreen; font-size: 130%;" class="mdi mdi-star"></p>
+                                                        <?php
+                                                        }
+                                                    }
+                                                    foreach (range($i, 5) as $number) {
+                                                        $i++; ?>
+                                                        <p style="margin: 0;font-size: 130%;" class="mdi mdi-star"></p>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <a style="text-decoration: none;" href="<?= base_url('Customer/pesandesign') ?>?id_d=<?= $des['id'] ?>" class="btn-secondary btn-rounded btn-sm" data-mdb-ripple-color="dark">Pesan Design</a>
+                                                <a style="text-decoration: none;" href="<?= base_url('Customer/detail_designer') ?>?id_d=<?= $des['id'] ?>" class="btn-primary btn-rounded btn-sm" data-mdb-ripple-color="dark">Lihat Profile</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div style="margin-top: 5%;margin-left: 10%" class="col">
-                            <h4 class="card-title mb-2">Visit Statistics</h4>
-                            <h4 class="card-title mb-2">
-                                <!-- Rating -->
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                            </h4>
-                        </div>
-                    </div>
+                    <?php
+                        if ($i <= 4) {
+                            break;
+                        }
+                        $i++;
+                    } ?>
                 </div>
             </div>
-            <div class="col-3 grid-margin stretch-card">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-3">
-                            <img style="width: 100%;margin-left: 50%; height: 90%;object-fit: cover;margin-bottom: 10px;border-radius: 50%; " src="<?= base_url('aset/') ?>/images/faces/face1.jpg" alt="">
-                        </div>
-                        <div style="margin-top: 5%;margin-left: 10%" class="col">
-                            <h4 class="card-title mb-2">Visit Statistics</h4>
-                            <h4 class="card-title mb-2">
-                                <!-- Rating -->
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3 grid-margin stretch-card">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-3">
-                            <img style="width: 100%;margin-left: 50%; height: 90%;object-fit: cover;margin-bottom: 10px;border-radius: 50%; " src="<?= base_url('aset/') ?>/images/faces/face1.jpg" alt="">
-                        </div>
-                        <div style="margin-top: 5%;margin-left: 10%" class="col">
-                            <h4 class="card-title mb-2">Visit Statistics</h4>
-                            <h4 class="card-title mb-2">
-                                <!-- Rating -->
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+</div>

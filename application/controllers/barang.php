@@ -4,7 +4,7 @@ use function PHPSTORM_META\type;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Customer extends CI_Controller
+class Barang extends CI_Controller
 {
     public function __construct()
     {
@@ -12,28 +12,19 @@ class Customer extends CI_Controller
         $this->load->model('User_model', 'userrole');
         $this->load->model('Customer_model', 'customer');
         $this->load->model('Designer_model', 'designer');
+        $this->load->model('Barang_model', 'Barang');
         $this->load->model('User_model', 'akun');
-        if ($this->session->userdata('role') != 'customer') {
-            redirect('Home');
-        }
     }
 
-    public function index()
+    public function beli()
     {
-        $data['header'] = 'dasboard';
+        $data['header'] = 'berbelanja';
+        $idbarang = strval($_GET['id_barang']);
+        $data['barang'] = $this->Barang->getById($idbarang);
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
         $this->load->view('content/header', $data);
-        $this->load->view('Customer/profil', $data);
-    }
-
-    public function profile()
-    {
-        $data['header'] = 'profile';
-        $data['user'] = $this->userrole->getBy();
-        $data['user2'] = $this->customer->getByemail();
-        $this->load->view('content/header', $data);
-        $this->load->view('Customer/profil', $data);
+        $this->load->view('Barang/vw_beli', $data);
         $this->load->view('content/footer', $data);
     }
 
@@ -99,7 +90,7 @@ class Customer extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Diubah!</div>');
                 if ($this->session->userdata('email') != $this->input->post('email')) {
                     redirect('Home/lougout');
-                }else{
+                } else {
                     redirect('Customer');
                 }
             } catch (\Throwable $th) {
@@ -150,6 +141,20 @@ class Customer extends CI_Controller
         $data['designer'] = $this->designer->getById($idd);
         $this->load->view('content/header', $data);
         $this->load->view('customer/profil_design', $data);
+        $this->load->view('content/footer', $data);
+    }
+
+    public function detail_barang()
+    {
+        $data['header'] = 'berbelanja';
+        $idbarang = strval($_GET['id_barang']);
+        $data['barang'] = $this->Barang->getById($idbarang);
+        $data['user'] = $this->userrole->getBy();
+        $data['user2'] = $this->customer->getByemail();
+        $idd = $data['barang']['id_design'];
+        $data['designer'] = $this->designer->getById($idd);
+        $this->load->view('content/header', $data);
+        $this->load->view('Barang/vw_detail', $data);
         $this->load->view('content/footer', $data);
     }
 }

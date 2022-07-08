@@ -4,7 +4,7 @@
             <div class="row g-2">
                 <div class="col-md-5 gradient-custom text-center text-white" style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                     <img src="<?= base_url('aset/') ?>images/faces/<?= $designer['gambar']; ?>" alt="Avatar" class="img-fluid my-4" style="width: 80%; border-radius: 20%;" />
-                    <button type="button" class="btn btn-secondary" data-mdb-ripple-color="dark"> Hubungi Sekarang</button>
+                    <a href="<?= base_url('Customer/pesandesign') ?>id_d=<?= $designer['id']; ?>" type="button" class="btn btn-secondary" data-mdb-ripple-color="dark">Pesan Design Fashion</a>
                 </div>
                 <div class="col-md-7">
                     <div class="card-body p-4">
@@ -56,19 +56,31 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <h1 style="text-align: right;" class="mb-4">Contoh Produk</h1>
-
+                    <h2 class="mb-4">Contoh Produk</h2>
                     <!-- Tampilkan 4 Produk -->
-                    <div class="d-flex">
+                    <div class="row">
                         <div class="col">
-                            <div style="max-width: 100%;" class="card">
-                                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                                    <img src="https://mdbootstrap.com/img/new/standard/nature/111.webp" class="img-fluid" />
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title m2">Card title</h5>
-                                    <button type="button" class="btn btn-primary">LihaT Detail</button>
-                                </div>
+                            <div style="padding: 0 2% 0 5%;">
+                                <?php $i = 1; ?>
+                                <?php foreach ($Barang as $b) : ?>
+                                    <div class="post_move">
+                                        <img src="<?= base_url('aset/') ?>images/barang/<?= $b['gambar']; ?>" alt="" class="post-img">
+                                        <div style="text-align: left;" href="<?= base_url('Customer/pesandesign') ?>" class="post-content">
+                                            <h3>
+                                                <dt><?= $b['nama']; ?></dt><br>
+                                                <dt><?= $b['harga']; ?></dt><br>
+                                                <?php
+                                                if ($this->session->userdata('role') == 'customer') {
+                                                ?>
+                                                    <a href="<?= base_url('Barang/beli') ?>?id_barang=<?= $b['id']; ?>" class="text-white badge badge-primary rounded-pill d-inline">Beli barang</a>
+                                                <?php
+                                                }
+                                                ?>
+                                            </h3>
+                                            <?php $i++; ?>
+                                        <?php endforeach; ?>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -76,3 +88,4 @@
             </div>
         </div>
     </div>
+</div>

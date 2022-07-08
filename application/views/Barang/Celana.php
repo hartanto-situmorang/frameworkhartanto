@@ -10,11 +10,11 @@
                         <dt><?= $b['harga']; ?></dt><br>
                         <?php
                         if ($this->session->userdata('role') == 'customer') {
-                           ?><button class="badge badge-primary rounded-pill d-inline">Beli barang</button> <?php
-                           ?><button class="badge badge-secondary rounded-pill d-inline">Detail</button> <?php
+                           ?><a href="<?= base_url('Barang/beli') ?>?id_barang=<?= $b['id']; ?>" class="badge badge-primary rounded-pill d-inline">Beli barang</a> <?php
+                           ?><a href="<?= base_url('Barang/detail_barang') ?>?id_barang=<?= $b['id']; ?>" class="badge badge-secondary rounded-pill d-inline">Detail</a> <?php
                         } elseif($this->session->userdata('role') == 'designer') {
-                            ?><button class="badge badge-primary rounded-pill d-inline">Edit Barang</button> <?php
-                            ?><button class="badge badge-secondary rounded-pill d-inline">Hapus Barang</button> <?php
+                            ?><a href="<?= base_url('Barang/edit') ?>?id_barang=<?= $b['id']; ?>" class="badge badge-primary rounded-pill d-inline">Edit Barang</a> <?php
+                            ?><a href="<?= base_url('Barang/hapus') ?>?id_barang=<?= $b['id']; ?>" class="badge badge-secondary rounded-pill d-inline">Hapus Barang</a> <?php
                         }
                         ?>
                     </div>

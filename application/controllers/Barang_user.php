@@ -52,7 +52,7 @@ class Barang_user extends CI_Controller
         $where ['jenis'] = 'aksesories';
         $data['Barang'] = $this->Barang->get_where($where);
         $this->load->view("Content/header", $data);
-        $this->load->view("Barang/barang_user", $data);
+        $this->load->view("Barang/aksesories", $data);
         $this->load->view("Content/footer", $data);
     }
 }

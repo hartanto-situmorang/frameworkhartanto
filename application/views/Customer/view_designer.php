@@ -3,7 +3,7 @@
         <div style="padding: 0% 5% 0% 5%;" class="container-fluid">
             <h2> Daftar Designer</h2>
             <!-- Design -->
-            <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="row d-flex justify-content-left align-items-left h-100">
                 <?php $i = 1; ?>
                 <?php foreach ($designer as $des) : ?>
                     <div class="col col-md-10 col-lg-6 col-xl-3">
@@ -35,8 +35,8 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <a href="<?= base_url('Customer/detail_designer_jual') ?>?id_d=<?= $des['id'] ?>" type="button" class="btn btn-secondary btn-rounded btn-sm" data-mdb-ripple-color="dark">Hubungi</a>
-                                            <a href="<?= base_url('Customer/detail_designer') ?>?id_d=<?= $des['id'] ?>" type="button" class="btn btn-primary btn-rounded btn-sm" data-mdb-ripple-color="dark">Lihat Profile</a>
+                                            <a href="<?= base_url('Customer/pesandesign') ?>?id_d=<?= $des['id'] ?>" class="btn-secondary btn-rounded btn-sm" data-mdb-ripple-color="dark">Pesan Design</a>
+                                            <a href="<?= base_url('Customer/detail_designer') ?>?id_d=<?= $des['id'] ?>" class="btn-primary btn-rounded btn-sm" data-mdb-ripple-color="dark">Lihat Profile</a>
                                         </div>
                                     </div>
                                 </div>

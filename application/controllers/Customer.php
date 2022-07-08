@@ -12,9 +12,10 @@ class Customer extends CI_Controller
         $this->load->model('User_model', 'userrole');
         $this->load->model('Customer_model', 'customer');
         $this->load->model('Designer_model', 'designer');
+        $this->load->model('Barang_model','Barang');
         $this->load->model('User_model', 'akun');
         if ($this->session->userdata('role') != 'customer') {
-            redirect('Home');
+            redirect('Home/login');
         }
     }
 
@@ -123,6 +124,7 @@ class Customer extends CI_Controller
         $data['header'] = 'tentang';
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
+        $data['designer'] = $this->designer->get();
         $this->load->view('content/header', $data);
         $this->load->view('admin/about', $data);
         $this->load->view('content/footer', $data);
@@ -148,8 +150,21 @@ class Customer extends CI_Controller
         $ambil = $_GET['id_d'];
         $idd = strval($ambil);
         $data['designer'] = $this->designer->getById($idd);
+        $where['id_design'] = $data['designer']['id'];
+        $data['Barang'] = $this->Barang->get_where($where);
         $this->load->view('content/header', $data);
         $this->load->view('customer/profil_design', $data);
+        $this->load->view('content/footer', $data);
+    }
+    public function pesandesign(){
+        $ambil = $_GET['id_d'];
+        $id_design = strval($ambil);
+        $data['header']='chat';
+        $data['user'] = $this->userrole->getBy();
+        $data['user2'] = $this->customer->getByemail();
+        $data['designer'] = $this->designer->getById($id_design);
+        $this->load->view('content/header', $data);
+        $this->load->view('customer/pesanan', $data);
         $this->load->view('content/footer', $data);
     }
 }
