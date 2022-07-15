@@ -15,12 +15,14 @@
                             foreach (range(1, $designer['rating']) as $number) {
                                 $i++; ?>
                                 <p style="margin: 0;color: yellowgreen; font-size: 170%;" class="mdi mdi-star"></p>
-                            <?php
+                                <?php
                             }
-                            foreach (range($i, 4) as $number) {
-                                $i++; ?>
-                                <p style="margin: 0;font-size: 170%;" class="mdi mdi-star"></p>
+                            if ($i < 5) {
+                                foreach (range($i, 4) as $number) {
+                                    $i++; ?>
+                                    <p style="margin: 0;font-size: 170%;" class="mdi mdi-star"></p>
                             <?php
+                                }
                             }
                             ?>
                         </div>
@@ -59,33 +61,36 @@
                     <h2 class="mb-4">Contoh Produk</h2>
                     <!-- Tampilkan 4 Produk -->
                     <div class="row">
-                        <div class="col">
-                            <div style="padding: 0 2% 0 5%;">
-                                <?php $i = 1; ?>
-                                <?php foreach ($Barang as $b) : ?>
+                        <?php $i = 1; ?>
+                        <?php foreach ($Barang as $b) { ?>
+                            <div class="col">
+                                <div style="padding: 0 2% 0 5%;">
                                     <div class="post_move">
                                         <img src="<?= base_url('aset/') ?>images/barang/<?= $b['gambar']; ?>" alt="" class="post-img">
                                         <div style="text-align: left;" href="<?= base_url('Customer/pesandesign') ?>" class="post-content">
                                             <h3>
                                                 <dt><?= $b['nama']; ?></dt><br>
-                                                <dt><?= $b['harga']; ?></dt><br>
+                                                <dt>Rp.<?= number_format($b['harga']); ?></dt><br>
                                                 <?php
                                                 if ($this->session->userdata('role') == 'customer') {
                                                 ?>
                                                     <a href="<?= base_url('Barang/beli') ?>?id_barang=<?= $b['id']; ?>" class="text-white badge badge-primary rounded-pill d-inline">Beli barang</a>
+                                                    <a href="<?= base_url('Barang/detail_barang') ?>?id_barang=<?= $b['id']; ?>" class="badge badge-secondary rounded-pill d-inline">Detail</a>
                                                 <?php
                                                 }
                                                 ?>
                                             </h3>
-                                            <?php $i++; ?>
-                                        <?php endforeach; ?>
                                         </div>
                                     </div>
+                                </div>
                             </div>
-                        </div>
+                            <?php $i++;
+                            if ($i == 4) {
+                                break;
+                            } ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

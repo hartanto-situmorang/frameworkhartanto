@@ -13,6 +13,7 @@ class Barang extends CI_Controller
         $this->load->model('Customer_model', 'customer');
         $this->load->model('Designer_model', 'designer');
         $this->load->model('Barang_model', 'Barang');
+        $this->load->model('Pesanan_model', 'Pesanan');
         $this->load->model('User_model', 'akun');
     }
 

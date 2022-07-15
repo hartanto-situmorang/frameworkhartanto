@@ -13,7 +13,9 @@ class Customer extends CI_Controller
         $this->load->model('Customer_model', 'customer');
         $this->load->model('Designer_model', 'designer');
         $this->load->model('Barang_model','Barang');
+        $this->load->model('Pesanan_model','Pesanan');
         $this->load->model('User_model', 'akun');
+        $this->load->model('Transaksi_model', 'Transaksi');
         if ($this->session->userdata('role') != 'customer') {
             redirect('Home/login');
         }
@@ -21,11 +23,25 @@ class Customer extends CI_Controller
 
     public function index()
     {
+        $data['header'] = 'none';
+        $data['user'] = $this->userrole->getBy();
+        $data['user2'] = $this->customer->getByemail();
+        $data['Transaksi'] = $this->Transaksi->getbycustomer($data['user2']['id']);
+        $data['Pesanan'] = $this->Pesanan->getbycustomer($data['user2']['id']);
+        $this->load->view('content/header', $data);
+        $this->load->view('Customer/dasboard', $data);
+        $this->load->view('content/footer', $data);
+    }
+    public function dasboard()
+    {
         $data['header'] = 'dasboard';
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
+        $data['Transaksi'] = $this->Transaksi->getbycustomer($data['user2']['id']);
+        $data['Pesanan'] = $this->Pesanan->getbycustomer($data['user2']['id']);
         $this->load->view('content/header', $data);
-        $this->load->view('Customer/profil', $data);
+        $this->load->view('Customer/dasboard', $data);
+        $this->load->view('content/footer', $data);
     }
 
     public function profile()
@@ -33,6 +49,7 @@ class Customer extends CI_Controller
         $data['header'] = 'profile';
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
+        $data['Pesanan'] = $this->Pesanan->getbycustomer($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('Customer/profil', $data);
         $this->load->view('content/footer', $data);
@@ -80,7 +97,7 @@ class Customer extends CI_Controller
                 if ($this->upload->do_upload('gambar')) {
                     $old_image = $this->session->userdata('gambar');
                     if ($old_image != 'default.jpg') {
-                        unlink(FCPATH . 'aset/images/faces/' . $old_image, 0775);
+                        unlink(FCPATH . 'aset/images/faces/' . $old_image);
                     }
                     $new_image = $this->upload->data('file_name');
                     $data2 = [
@@ -101,7 +118,7 @@ class Customer extends CI_Controller
                 if ($this->session->userdata('email') != $this->input->post('email')) {
                     redirect('Home/lougout');
                 }else{
-                    redirect('Customer');
+                    redirect('Customer/profile');
                 }
             } catch (\Throwable $th) {
                 echo 'dfsdfds' . $th;
@@ -114,6 +131,7 @@ class Customer extends CI_Controller
         $data['header'] = 'transaksi';
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
+        $data['Transaksi'] = $this->Transaksi->getbycustomer($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('Customer/transaksi', $data);
         $this->load->view('content/footer', $data);

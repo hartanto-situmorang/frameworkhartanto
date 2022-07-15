@@ -17,7 +17,7 @@ class Home extends CI_Controller
     {
         if ($this->session->userdata('role') == 'customer') {
             redirect('Customer');
-        } elseif ($this->session->userdata('role') == 'Designer') {
+        } elseif ($this->session->userdata('role') == 'designer') {
             redirect('Designer');
         } elseif ($this->session->userdata('role') == 'admin') {
             redirect('Admin');
@@ -26,22 +26,6 @@ class Home extends CI_Controller
         $data['designer'] = $this->Designer->get();
         $this->load->view('login/header', $data);
         $this->load->view('admin/about', $data);
-        $this->load->view('login/footer', $data);
-    }
-
-    public function produk()
-    {
-        if ($this->session->userdata('role') == 'customer') {
-            redirect('Customer');
-        } elseif ($this->session->userdata('role') == 'Designer') {
-            redirect('Designer');
-        } elseif ($this->session->userdata('role') == 'admin') {
-            redirect('Admin');
-        }
-        $data['Barang'] = $this->Barang->get(); 
-        $data['header'] = 'produk';
-        $this->load->view('login/header', $data);
-        $this->load->view('admin/only_barang', $data);
         $this->load->view('login/footer', $data);
     }
 
@@ -96,7 +80,7 @@ class Home extends CI_Controller
             ];
             if ($this->input->post('role') == 'customer') {
                 $this->customer->insert($data);
-            } elseif ($this->input->post('role') == 'Designer') {
+            } elseif ($this->input->post('role') == 'designer') {
                 $this->Designer->insert($data);
             }
             $this->userrole->insert($data2);
@@ -145,8 +129,8 @@ class Home extends CI_Controller
                 $this->session->set_userdata($data);
                 if ($user['role'] == 'customer') {
                     redirect('Customer/profile');
-                } elseif ($user['role'] == 'Designer') {
-                    redirect('Designer');
+                } elseif ($user['role'] == 'designer') {
+                    redirect('Designer/profil');
                 } else {
                     redirect('Admin');
                 }

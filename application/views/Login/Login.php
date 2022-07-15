@@ -53,10 +53,12 @@
                                                         <?php
                                                         }
                                                     }
-                                                    foreach (range($i, 5) as $number) {
-                                                        $i++; ?>
-                                                        <p style="margin: 0;font-size: 130%;" class="mdi mdi-star"></p>
+                                                    if ($i < 5) {
+                                                        foreach (range($i, 5) as $number) {
+                                                            $i++; ?>
+                                                            <p style="margin: 0;font-size: 130%;" class="mdi mdi-star"></p>
                                                     <?php
+                                                        }
                                                     }
                                                     ?>
                                                 </div>

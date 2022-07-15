@@ -29,7 +29,7 @@
     </div>
 </div>
 
-<div style="margin: 0 20 0 20;padding: 1% 5% 1% 5%;">
+<div style="margin: 0 5% 0 5%;padding: 1% 5% 1% 5%;">
     <div class="row">
         <?php $i = 0; ?>
         <?php foreach ($designer as $des) { ?>
@@ -52,11 +52,12 @@
                                                 <p style="margin: 0;color: yellowgreen; font-size: 130%;" class="mdi mdi-star"></p>
                                             <?php
                                             }
-                                        }
-                                        foreach (range($i, 5) as $number) {
-                                            $i++; ?>
-                                            <p style="margin: 0;font-size: 130%;" class="mdi mdi-star"></p>
+                                        }if ($i < 5) {
+                                            foreach (range($i, 5) as $number) {
+                                                $i++; ?>
+                                                <p style="margin: 0;font-size: 130%;" class="mdi mdi-star"></p>
                                         <?php
+                                            }
                                         }
                                         ?>
                                     </div>

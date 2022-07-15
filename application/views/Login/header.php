@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('aset/') ?>style.css">
     <link rel="stylesheet" href="<?= base_url('aset/') ?>stylecard.css">
-    <link rel="shortcut icon" href="<?= base_url('aset/') ?>images/favicon.png">
+    <link rel="shortcut icon" href="<?= base_url('aset/') ?>images/auth/logo.png">
     <link rel="stylesheet" href="<?= base_url('aset/') ?>vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?= base_url('aset/') ?>vendors/base/vendor.bundle.base.css">
     <link rel="stylesheet" href="<?= base_url('aset/') ?>vendors/select2/select2.min.css">
@@ -38,26 +38,6 @@
                         <span class="mdi mdi-menu"></span>
                     </button>
                 </div>
-            </div>
-        </nav>
-        <nav class="bottom-navbar">
-            <div class="container">
-                <ul style="display: flex; justify-content: center; align-items: center;" class="page-navigation">
-                    <li style="display: flex;" class="nav nav-item <?php if ($header == 'tentang')  echo 'active' ?>">
-                        <a class="nav-link" href="<?= base_url('Customer/tentang
-                        ') ?>">
-                            <i class="mdi mdi-file-document-box menu-icon"></i>
-                            <span class="menu-title">Tentang Kami</span>
-                        </a>
-                    </li>
-                    <li style="display: flex;" class="nav nav-item <?php if ($header == 'produk')  echo 'active' ?>">
-                        <a href="<?= base_url('Home/produk') ?>" class="nav-link">
-                            <i class="mdi mdi-cube-outline menu-icon"></i>
-                            <span class="menu-title">Produk</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                    </li>
-                </ul>
             </div>
         </nav>
     </div>

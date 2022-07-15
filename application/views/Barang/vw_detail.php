@@ -33,7 +33,7 @@
                                     <p class="form-la" for="form1Example2">Harga Barang
                                     </p>
                                 </b>
-                                <p class="form-la"><?= $barang['harga']; ?>
+                                <p class="form-la">Rp.<?= number_format($barang['harga']); ?>
                                 </p>
                                 <?= form_error('harga', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="form-outline mb-2">
                                     <b>
-                                        <p class="form-la" for="form1Example2">Rating
+                                        <p class="form-la" for="form1Example2">Rating Designer
                                         </p>
                                     </b>
                                     <div class="d-flex flex-row align-items-center mb-6 mb-2">
@@ -85,19 +85,21 @@
                                             <?php
                                             }
                                         }
-                                        foreach (range($i, 5) as $number) {
-                                            $i++; ?>
-                                            <p style="margin: 0;font-size: 130%;" class="mdi mdi-star"></p>
+                                        if ($i < 5) {
+                                            foreach (range($i, 5) as $number) {
+                                                $i++; ?>
+                                                <p style="margin: 0;font-size: 130%;" class="mdi mdi-star"></p>
                                         <?php
+                                            }
                                         }
                                         ?>
                                     </div>
                                 </div>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

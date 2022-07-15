@@ -12,6 +12,7 @@ class Barang_model extends CI_Model
     public function get()
     {
         $this->db->from($this->table);
+        $this->db->where('status' == 'ready');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -19,17 +20,32 @@ class Barang_model extends CI_Model
     {
         $this->db->from($this->table);
         $this->db->where('id', $id);
+        $this->db->where('status', 'ready');
         $query = $this->db->get();
         return $query->row_array();
+    }
+    public function getByIdDesign($id)
+    {
+        $this->db->from($this->table);
+        $this->db->where('id_design', $id);
+        $this->db->where('status', 'ready');
+        $query = $this->db->get();
+        return $query->result_array();
     }
     public function get_where($data)
     {
         $this->db->from($this->table);;
         $this->db->where($data);
+        $this->db->where('status', 'ready');
         $query = $this->db->get();
         return $query->result_array();
     }
     public function update($where, $data)
+    {
+        $this->db->update($this->table, $data, $where);
+        return $this->db->affected_rows();
+    }
+    public function updatestok($where, $data)
     {
         $this->db->update($this->table, $data, $where);
         return $this->db->affected_rows();
@@ -43,6 +59,11 @@ class Barang_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
+        return $this->db->affected_rows();
+    }
+    public function hapus($where, $data)
+    {
+        $this->db->update($this->table, $data, $where);
         return $this->db->affected_rows();
     }
 }

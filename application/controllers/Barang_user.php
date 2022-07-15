@@ -27,7 +27,7 @@ class Barang_user extends CI_Controller
         $data['header'] = "berbelanja";
         $data['user'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
         $data['user2'] = $this->customer->getByemail();
-        $where ['jenis'] = 'pakaian';
+        $where['jenis'] = 'pakaian';
         $data['Barang'] = $this->Barang->get_where($where);
         $this->load->view("Content/header", $data);
         $this->load->view("Barang/pakaian", $data);
@@ -38,7 +38,7 @@ class Barang_user extends CI_Controller
         $data['header'] = "berbelanja";
         $data['user'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
         $data['user2'] = $this->customer->getByemail();
-        $where ['jenis'] = 'celana';
+        $where['jenis'] = 'celana';
         $data['Barang'] = $this->Barang->get_where($where);
         $this->load->view("Content/header", $data);
         $this->load->view("Barang/Celana", $data);

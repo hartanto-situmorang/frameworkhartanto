@@ -1,5 +1,5 @@
-<div style="padding: 0 2% 0 5%;">
-    <div style="justify-content: flex-start;" class="blog-posts">
+<div style="padding: 0 2% 0 5%; ">
+    <div style="justify-content: flex-start;" class="blog-posts mt-3">
         <?php $i = 0; ?>
         <?php foreach ($Barang as $b) { ?>
             <div class="post">
@@ -7,7 +7,7 @@
                 <div style="text-align: left;" href="../view/view.php" class="post-content">
                     <h3>
                         <dt><?= $b['nama']; ?></dt><br>
-                        <dt><?= $b['harga']; ?></dt><br>
+                        <dt>Rp.<?= number_format($b['harga']); ?></dt><br>
                         <?php
                         if ($this->session->userdata('role') == 'customer') {
                         ?>
