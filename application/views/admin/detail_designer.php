@@ -1,10 +1,11 @@
+<?= $this->session->flashdata('message'); ?>.
 <div style="padding: 0 5%  0 10%;margin:0;" class="justify-content-center row">
     <div class="row">
         <div class="col card mb-6" style="border-radius: .5rem;">
             <div class="row g-2">
                 <div class="col-md-5 gradient-custom text-center text-white" style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                     <img src="<?= base_url('aset/') ?>images/faces/<?= $designer['gambar']; ?>" alt="Avatar" class="img-fluid my-4" style="width: 80%; border-radius: 20%;" />
-                    <a href="<?= base_url('Barang_user/pakaian') ?>" type="button" class="btn btn-secondary" data-mdb-ripple-color="dark">Berbelanja</a>
+                    <a href="<?= base_url('Admin/Hapus_d') ?>id_d=<?= $designer['id']; ?>" type="button" class="btn btn-danger" data-mdb-ripple-color="dark">Non Active Designer Ini !!</a>
                 </div>
                 <div class="col-md-7">
                     <div class="card-body p-4">
@@ -71,14 +72,6 @@
                                             <h3>
                                                 <dt><?= $b['nama']; ?></dt><br>
                                                 <dt>Rp.<?= number_format($b['harga']); ?></dt><br>
-                                                <?php
-                                                if ($this->session->userdata('role') == 'customer') {
-                                                ?>
-                                                    <a href="<?= base_url('Barang/beli') ?>?id_barang=<?= $b['id']; ?>" class="text-white badge badge-primary rounded-pill d-inline">Beli barang</a>
-                                                    <a href="<?= base_url('Barang/detail_barang') ?>?id_barang=<?= $b['id']; ?>" class="badge badge-secondary rounded-pill d-inline">Detail</a>
-                                                <?php
-                                                }
-                                                ?>
                                             </h3>
                                         </div>
                                     </div>

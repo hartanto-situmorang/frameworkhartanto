@@ -43,4 +43,11 @@ class User_model extends CI_Model
         $query = $this->db->get();
         return $query->num_rows();
     }
+    public function getByemail()
+    {
+        $this->db->from($this->table);;
+        $this->db->where('email', $this->session->userdata('email'));
+        $query = $this->db->get();
+        return $query->row_array();
+    }
 }

@@ -130,16 +130,25 @@ class Home extends CI_Controller
                 if ($user['role'] == 'customer') {
                     redirect('Customer/profile');
                 } elseif ($user['role'] == 'designer') {
+                    $data['user'] = $this->userrole->getBy();
+                    $data['user2'] = $this->Designer->getByemail();
+                    if ($data['user2']['status'] == 'nonactive') {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger m-4 p-4 " role="alert">MAAF AKUN ANDA DI NON-ACTIVE OLEH ADMINISTRATOR!</div>');
+                        $this->session->unset_userdata('email');
+                        $this->session->unset_userdata('role');
+                        $this->session->unset_userdata('user');
+                        redirect('Home');
+                    }
                     redirect('Designer/profil');
                 } else {
                     redirect('Admin');
                 }
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Salah!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger m-4 p-4 " role="alert">Password Salah!</div>');
                 redirect('Home/login');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Email Belum Terdaftar! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger m-4 p-4" role="alert"> Email Belum Terdaftar! </div>');
             redirect('Home/login');
         }
     }

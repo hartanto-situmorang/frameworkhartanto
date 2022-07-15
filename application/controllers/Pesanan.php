@@ -96,6 +96,13 @@ class Pesanan extends CI_Controller
     {
         $status = $_GET['id_pesanan'];
         $this->Pesanan->terima(['id' => $status], ['status' => 'Belum Diterima']);
+
+        $data['user'] = $this->userrole->getBy();
+        $data['user2'] = $this->designer->getByemail();
+        $id= $_GET['id_pesanan'];
+        $where['id'] = ['sudah'];
+        $this->Pesanan->baca(['id' => $id],['baca' => 'belum']);
+
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Pesanan Berhasil Diubah!</div>');
         redirect('Customer/profile');
     }

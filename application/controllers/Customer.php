@@ -28,6 +28,8 @@ class Customer extends CI_Controller
         $data['user2'] = $this->customer->getByemail();
         $data['Transaksi'] = $this->Transaksi->getbycustomer($data['user2']['id']);
         $data['Pesanan'] = $this->Pesanan->getbycustomer($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('Customer/dasboard', $data);
         $this->load->view('content/footer', $data);
@@ -39,6 +41,8 @@ class Customer extends CI_Controller
         $data['user2'] = $this->customer->getByemail();
         $data['Transaksi'] = $this->Transaksi->getbycustomer($data['user2']['id']);
         $data['Pesanan'] = $this->Pesanan->getbycustomer($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('Customer/dasboard', $data);
         $this->load->view('content/footer', $data);
@@ -50,6 +54,10 @@ class Customer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
         $data['Pesanan'] = $this->Pesanan->getbycustomer($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('Customer/profil', $data);
         $this->load->view('content/footer', $data);
@@ -61,7 +69,8 @@ class Customer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
         $data['user'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
-
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
         $this->form_validation->set_rules('nama', 'Nama', 'required', [
             'required' => 'Nama Wajib di isi'
         ]);
@@ -132,6 +141,8 @@ class Customer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
         $data['Transaksi'] = $this->Transaksi->getbycustomer($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('Customer/transaksi', $data);
         $this->load->view('content/footer', $data);
@@ -143,6 +154,8 @@ class Customer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
         $data['designer'] = $this->designer->get();
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('admin/about', $data);
         $this->load->view('content/footer', $data);
@@ -155,6 +168,8 @@ class Customer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
         $data['designer'] = $this->designer->get();
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('customer/view_designer', $data);
         $this->load->view('content/footer', $data);
@@ -165,6 +180,8 @@ class Customer extends CI_Controller
         $data['header'] = 'designer';
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
         $ambil = $_GET['id_d'];
         $idd = strval($ambil);
         $data['designer'] = $this->designer->getById($idd);
@@ -181,8 +198,20 @@ class Customer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
         $data['designer'] = $this->designer->getById($id_design);
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('customer/pesanan', $data);
         $this->load->view('content/footer', $data);
+    }
+
+    public function baca(){
+        
+        $data['user'] = $this->userrole->getBy();
+        $data['user2'] = $this->designer->getByemail();
+        $id= $_GET['id_pesanan'];
+        $where['id'] = ['sudah'];
+        $this->Pesanan->baca(['id' => $id],['baca_customer' => 'sudah']);
+        redirect('Customer/dasboard');
     }
 }

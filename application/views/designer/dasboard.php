@@ -22,7 +22,7 @@
                                     <div class="row">
                                         <div class="col-sm-7 pl-lg-4">
                                             <p class="mb-0">Pendapatan Anda</p>
-                                            <h2>Rp.<?= number_format($presentasi['total']); ?></h2>
+                                            <h2>Rp.<?= $presentasi['total']; ?></h2>
                                         </div>
                                         <div class="col-sm-4 climate-info-border mt-lg-0 mt-2">
                                             <p class="mb-0">Total Barang</p>
@@ -67,7 +67,7 @@
 </div>
 <script>
     var xValues = ["Celana", "Pakaian", "Aksesories", ""];
-    var yValues = [<?= $Transaksi[1]['jumlah'];?>, <?= $Transaksi[2]['jumlah'];?>, <?= $Transaksi[0]['jumlah'];?>, 0];
+    var yValues = [<?= $jmlcelana;?>, <?= $jmlpakaian;?>, <?= $jmlaks;?>, 0];
     var barColors = ["#0901FE", "#5751FE", "#FE51ED"];
 
     new Chart("Penjualan", {

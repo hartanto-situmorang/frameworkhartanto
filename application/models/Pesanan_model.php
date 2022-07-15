@@ -36,6 +36,26 @@ class Pesanan_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    // notif designer
+    public function notif($data)
+    {
+        $this->db->from($this->table);
+        $this->db->where('baca', 'belum');
+        $this->db->where('id_designer', $data);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // notif customer
+    public function notifc($data)
+    {
+        $this->db->from($this->table);
+        $this->db->where('baca_customer', 'belum');
+        $this->db->where('id_customer', $data);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getById($id)
     {
         $this->db->from($this->table);
@@ -63,6 +83,12 @@ class Pesanan_model extends CI_Model
         return $this->db->affected_rows();
     }
 
+    public function baca($where, $data)
+    {
+        $this->db->update($this->table, $data, $where);
+        return $this->db->affected_rows();
+    }
+
     public function terima($where, $data)
     {
         $this->db->update($this->table, $data, $where);
@@ -79,5 +105,23 @@ class Pesanan_model extends CI_Model
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
         return $this->db->affected_rows();
+    }
+
+    public function notifcount($data)
+    {
+        $this->db->from($this->table);
+        $this->db->where('baca', 'belum');
+        $this->db->where('id_designer', $data);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    // notif customer
+    public function notifcountc($data)
+    {
+        $this->db->from($this->table);
+        $this->db->where('baca_customer', 'belum');
+        $this->db->where('id_customer', $data);
+        $query = $this->db->get();
+        return $query->num_rows();
     }
 }

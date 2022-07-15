@@ -12,7 +12,7 @@ class Barang_model extends CI_Model
     public function get()
     {
         $this->db->from($this->table);
-        $this->db->where('status' == 'ready');
+        $this->db->where('status', 'ready');
         $query = $this->db->get();
         return $query->result_array();
     }

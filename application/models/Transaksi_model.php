@@ -98,10 +98,19 @@ class Transaksi_model extends CI_Model
     }
     public function presentasi($data)
     {
-        $this->db->select('barang.jenis as jenis,sum(transaksi.total) as jumlah');
+        $this->db->select('barang.jenis as jenis,sum(transaksi.total) as total,sum(transaksi.jumlah) as jumlah');
         $this->db->from('transaksi');
         $this->db->join('barang','transaksi.id_barang = barang.id');
         $this->db->where('transaksi.id_designer', $data);
+        $this->db->group_by('barang.jenis');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getpenjualan()
+    {
+        $this->db->select('barang.jenis as jenis,sum(transaksi.total) as total,sum(transaksi.jumlah) as jumlah');
+        $this->db->from('transaksi');
+        $this->db->join('barang','transaksi.id_barang = barang.id');
         $this->db->group_by('barang.jenis');
         $query = $this->db->get();
         return $query->result_array();

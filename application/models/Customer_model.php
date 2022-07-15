@@ -12,6 +12,7 @@ class Customer_model extends CI_Model
     public function get()
     {
         $this->db->from($this->table);
+        $this->db->where('status', 'online');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -43,6 +44,11 @@ class Customer_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
+        return $this->db->affected_rows();
+    }
+    public function hapusbyadmin($where, $data)
+    {
+        $this->db->update($this->table, $data, $where);
         return $this->db->affected_rows();
     }
 }

@@ -23,6 +23,8 @@ class Barang_designer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->designer->getByemail();
         $data['barang'] = $this->Barang->getByIdDesign($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('designer/vwbarang', $data);
         $this->load->view('content/footer', $data);
@@ -35,6 +37,8 @@ class Barang_designer extends CI_Controller
         $data['barang'] = $this->Barang->getById($idbarang);
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('Barang/vw_beli', $data);
         $this->load->view('content/footer', $data);
@@ -46,6 +50,8 @@ class Barang_designer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->designer->getByemail();
         $data['barang'] = $this->Barang->getById($_GET['id_barang']);
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
 
         $this->form_validation->set_rules('nama', 'Nama', 'required', [
             'required' => 'Nama Wajib di isi',
@@ -112,6 +118,8 @@ class Barang_designer extends CI_Controller
         $data['header'] = 'transaksi';
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('Customer/transaksi', $data);
         $this->load->view('content/footer', $data);
@@ -122,6 +130,8 @@ class Barang_designer extends CI_Controller
         $data['header'] = 'tentang';
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('admin/about', $data);
         $this->load->view('content/footer', $data);
@@ -134,6 +144,8 @@ class Barang_designer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->customer->getByemail();
         $data['designer'] = $this->designer->get();
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('customer/view_designer', $data);
         $this->load->view('content/footer', $data);
@@ -144,6 +156,8 @@ class Barang_designer extends CI_Controller
         $data['header'] = 'designer';
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->designer->getByemail();
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $ambil = $_GET['id_d'];
         $idd = strval($ambil);
         $data['designer'] = $this->designer->getById($idd);
@@ -161,6 +175,8 @@ class Barang_designer extends CI_Controller
         $data['user2'] = $this->customer->getByemail();
         $idd = $data['barang']['id_design'];
         $data['designer'] = $this->designer->getById($idd);
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('Barang/vw_detail', $data);
         $this->load->view('content/footer', $data);
@@ -179,6 +195,8 @@ class Barang_designer extends CI_Controller
         $data['header'] = 'barang';
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->designer->getByemail();
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
 
         $this->form_validation->set_rules('nama', 'Nama', 'required', [
             'required' => 'Nama Wajib di isi',
@@ -194,7 +212,7 @@ class Barang_designer extends CI_Controller
         $this->form_validation->set_rules('jenis', 'jenis', 'required', [
             'required' => 'jenis Wajib di isi'
         ]);
-        
+
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Check Data dengan benar !!!</div>');
             redirect('Barang_designer/tampil');

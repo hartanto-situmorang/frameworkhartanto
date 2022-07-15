@@ -27,6 +27,8 @@ class Pemesanan_designer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->designer->getByemail();
         $data['Pesanan'] = $this->Pesanan->getById($_GET['id_pesanan']);
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('designer/detailpesan', $data);
         $this->load->view('content/footer', $data);
@@ -38,6 +40,8 @@ class Pemesanan_designer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->designer->getByemail();
         $data['Transaksi'] = $this->Transaksi->getById($_GET['id_transaksi']);
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('designer/detailtransaksi', $data);
         $this->load->view('content/footer', $data);
@@ -47,6 +51,8 @@ class Pemesanan_designer extends CI_Controller
     {
         $status = $_GET['id_pesanan'];
         $this->Pesanan->terima(['id' => $status], ['status' => 'Proses Pengiriman']);
+        $this->Pesanan->baca(['id' => $status], ['baca_customer' => 'belum']);
+        $this->Pesanan->baca(['id' => $status], ['baca' => 'sudah']);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Pesanan Berhasil Diubah!</div>');
         redirect('Designer/Pesanan');
     }
@@ -55,6 +61,8 @@ class Pemesanan_designer extends CI_Controller
     {
         $status = $_GET['id_pesanan'];
         $this->Pesanan->terima(['id' => $status], ['status' => 'Proses Packing']);
+        $this->Pesanan->baca(['id' => $status], ['baca_customer' => 'belum']);
+        $this->Pesanan->baca(['id' => $status], ['baca' => 'sudah']);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Pesanan Berhasil Diubah!</div>');
         redirect('Designer/Pesanan');
     }

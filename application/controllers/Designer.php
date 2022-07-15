@@ -32,6 +32,9 @@ class Designer extends CI_Controller
         $data['user2'] = $this->designer->getByemail();
         $data['Transaksi'] = $this->Transaksi->getbycustomer($data['user2']['id']);
         $data['barang'] = $this->Barang->getByIdDesign($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
+
         $this->load->view('content/header', $data);
         $this->load->view('designer/vwbarang', $data);
         $this->load->view('content/footer', $data);
@@ -43,6 +46,8 @@ class Designer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->designer->getByemail();
         $data['Pesanan'] = $this->Pesanan->getbydesigner($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('Designer/pemesanan', $data);
         $this->load->view('content/footer', $data);
@@ -56,6 +61,8 @@ class Designer extends CI_Controller
         $data['user2'] = $this->designer->getByemail();
         $data['Transaksi'] = $this->Transaksi->getbycustomer($data['user2']['id']);
         $data['Pesanan'] = $this->Pesanan->getbydesigner($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('designer/profil', $data);
         $this->load->view('content/footer', $data);
@@ -68,21 +75,38 @@ class Designer extends CI_Controller
         $data['Transaksi'] = $this->Transaksi->getbycustomer($data['user2']['id']);
         $data['presentasi']['total'] = $this->Transaksi->hasil($data['user2']['id']);
         $data['presentasi']['jml'] = $this->Transaksi->barangterjual($data['user2']['id']);
-        $data['Transaksi'] = $this->Transaksi->presentasi($data['user2']['id']);
+        $data['Transaksi2'] = $this->Transaksi->presentasi($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
 
-        //HItung
-        $data['persentcelana'] = number_format(($data['Transaksi'][1]['jumlah']/($data['Transaksi'][0]['jumlah']+
-        $data['Transaksi'][1]['jumlah']+
-        $data['Transaksi'][2]['jumlah']))*100,2);
+        //HItung persentasi Berdasarkan harga
+        $cel = $pak = $aks = $jmlcel = $jmlpak = $jmlaks = 0;
 
-        $data['persentaksesories'] = number_format(($data['Transaksi'][0]['jumlah']/($data['Transaksi'][0]['jumlah']+
-        $data['Transaksi'][1]['jumlah']+
-        $data['Transaksi'][2]['jumlah']))*100,2);
+        // chek transaksi untuk celana
+        if (array_key_exists(1, $data['Transaksi2'])) {
+            $cel = $data['Transaksi2'][1]['total'];
+            $jmlcel = $data['Transaksi2'][1]['jumlah'];
+        }
+        // chek transaksi untuk pakaian
+        if (array_key_exists(2, $data['Transaksi2'])) {
+            $pak = $data['Transaksi2'][2]['total'];
+            $jmlpak = $data['Transaksi2'][2]['jumlah'];
+        }
+        // chek transaksi untuk aksespries
+        if (array_key_exists(0, $data['Transaksi2'])) {
+            $aks = $data['Transaksi2'][0]['total'];
+            $jmlaks = $data['Transaksi2'][0]['jumlah'];
+        }
 
-        $data['persentpakaian'] = number_format(($data['Transaksi'][2]['jumlah']/($data['Transaksi'][0]['jumlah']+
-        $data['Transaksi'][1]['jumlah']+
-        $data['Transaksi'][2]['jumlah']))*100,2);
+        // start hitung
+        $data['persentcelana'] = number_format($cel / ($aks + $pak + $cel) * 100, 2);
+        $data['persentaksesories'] = number_format($aks / ($aks + $pak + $cel) * 100, 2);
+        $data['persentpakaian'] = number_format($pak / ($aks + $pak + $cel) * 100, 2);
+        $data['jmlcelana'] = $jmlcel;
+        $data['jmlpakaian'] = $jmlpak;
+        $data['jmlaks'] = $jmlaks;
         //end hitung
+
         //print_r($data['Transaksi']);
         $this->load->view('content/header', $data);
         $this->load->view('designer/dasboard', $data);
@@ -96,6 +120,8 @@ class Designer extends CI_Controller
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->designer->getByemail();
         $data['Transaksi'] = $this->Transaksi->getbydesigner($data['user2']['id']);
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $this->load->view('content/header', $data);
         $this->load->view('designer/transaksi', $data);
         $this->load->view('content/footer', $data);
@@ -106,6 +132,8 @@ class Designer extends CI_Controller
         $data['header'] = 'dasboard';
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->designer->getByemail();
+        $data['NotifPesanan'] = $this->Pesanan->notif($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcount($data['user2']['id']);
         $data['user'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('nama', 'Nama', 'required', [
@@ -176,5 +204,15 @@ class Designer extends CI_Controller
                 echo 'dfsdfds' . $th;
             }
         }
+    }
+    public function baca()
+    {
+
+        $data['user'] = $this->userrole->getBy();
+        $data['user2'] = $this->designer->getByemail();
+        $id = $_GET['id_pesanan'];
+        $where['id'] = ['sudah'];
+        $this->Pesanan->baca(['id' => $id], ['baca' => 'sudah']);
+        redirect('Designer/pesanan');
     }
 }
