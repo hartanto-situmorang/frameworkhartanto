@@ -28,7 +28,7 @@
                                                     <?php
                                                     }
                                                 }
-                                                if ($i < 5) {
+                                                if ($i <= 5) {
                                                     foreach (range($i, 5) as $number) {
                                                         $i++; ?>
                                                         <p style="margin: 0;font-size: 130%;" class="mdi mdi-star"></p>
@@ -42,7 +42,7 @@
                                             <a href="<?= base_url('Admin/detail_designer') ?>?id_d=<?= $des['id'] ?>" class="btn-primary btn-rounded btn-sm" data-mdb-ripple-color="dark">Lihat Profile</a>
                                             <?php
                                             if ($des['status'] == 'active') {
-                                                if ($b <= 4) { ?>
+                                                if ($b <= 4 && $des['rating'] >= 3) { ?>
                                                     <a href="<?= base_url('Admin/Bonus_d') ?>?id_d=<?= $des['id'] ?>" class="btn-secondary btn-rounded btn-sm" data-mdb-ripple-color="dark">Bonus</a>
                                                 <?php $b++;
                                                 } ?>

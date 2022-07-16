@@ -26,7 +26,7 @@
                             </div>
                             <div class="form-group">
                                 <select name="role" class="custom-select" id="inputGroupSelect02">
-                                    <option >Daftaf Menjadi...</option>
+                                    <option>Daftaf Menjadi...</option>
                                     <option value="customer" <?php if (set_value('role') == 'customer') echo 'selected'; ?>>Pembeli</option>
                                     <option value="designer" <?php if (set_value('role') == 'designer') echo 'selected'; ?>>Designer</option>
                                 </select>
@@ -48,85 +48,57 @@
             </div>
         </div>
         <div style="margin: 20px;" class="row">
-            <div class="col-3 grid-margin stretch-card">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-3">
-                            <img style="width: 100%;margin-left: 50%; height: 90%;object-fit: cover;margin-bottom: 10px;border-radius: 50%; " src="<?= base_url('aset/') ?>/images/faces/face1.jpg" alt="">
+            <div class="card">
+                <div class="row">
+                    <?php $i = 0; ?>
+                    <?php foreach ($designer as $des) { ?>
+                        <div class="col col-md-10 col-lg-6 col-xl-3 p-4">
+                            <div style="border-radius: 15px; background-color: #93e2bb;">
+                                <div class="card-body p-3 text-black">
+                                    <div class="d-flex align-items-center mb-6">
+                                        <div class="flex-shrink-0">
+                                            <img src="<?= base_url('aset/') ?>images/faces/<?= $des['gambar']; ?>" alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3" style="width: 70px;">
+                                        </div>
+                                        <div class="flex ms-3">
+                                            <div class="d-flex flex-row align-items-center mb-6">
+                                                <p class="mb-0 me-2"><?= $des['nama'] ?></p>
+                                                <div class="d-flex flex-row align-items-center mb-6 mb-2">
+                                                    <?php
+                                                    $i = 1;
+                                                    if ($des['rating'] != 0) {
+                                                        foreach (range($i, $des['rating']) as $number) {
+                                                            $i++; ?>
+                                                            <p style="margin: 0;color: yellowgreen; font-size: 130%;" class="mdi mdi-star"></p>
+                                                        <?php
+                                                        }
+                                                    }
+                                                    if ($i < 5) {
+                                                        foreach (range($i, 5) as $number) {
+                                                            $i++; ?>
+                                                            <p style="margin: 0;font-size: 130%;" class="mdi mdi-star"></p>
+                                                    <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <a style="text-decoration: none;" href="<?= base_url('Barang_user/pakaian') ?>" class="btn-secondary btn-rounded btn-sm" data-mdb-ripple-color="dark">Berbelanja</a>
+                                                <a style="text-decoration: none;" href="<?= base_url('Customer/detail_designer') ?>?id_d=<?= $des['id'] ?>" class="btn-primary btn-rounded btn-sm" data-mdb-ripple-color="dark">Lihat Profile</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div style="margin-top: 5%;margin-left: 10%" class="col">
-                            <h4 class="card-title mb-2">Visit Statistics</h4>
-                            <h4 class="card-title mb-2">
-                                <!-- Rating -->
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3 grid-margin stretch-card">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-3">
-                            <img style="width: 100%;margin-left: 50%; height: 90%;object-fit: cover;margin-bottom: 10px;border-radius: 50%; " src="<?= base_url('aset/') ?>/images/faces/face1.jpg" alt="">
-                        </div>
-                        <div style="margin-top: 5%;margin-left: 10%" class="col">
-                            <h4 class="card-title mb-2">Visit Statistics</h4>
-                            <h4 class="card-title mb-2">
-                                <!-- Rating -->
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3 grid-margin stretch-card">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-3">
-                            <img style="width: 100%;margin-left: 50%; height: 90%;object-fit: cover;margin-bottom: 10px;border-radius: 50%; " src="<?= base_url('aset/') ?>/images/faces/face1.jpg" alt="">
-                        </div>
-                        <div style="margin-top: 5%;margin-left: 10%" class="col">
-                            <h4 class="card-title mb-2">Visit Statistics</h4>
-                            <h4 class="card-title mb-2">
-                                <!-- Rating -->
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3 grid-margin stretch-card">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-3">
-                            <img style="width: 100%;margin-left: 50%; height: 90%;object-fit: cover;margin-bottom: 10px;border-radius: 50%; " src="<?= base_url('aset/') ?>/images/faces/face1.jpg" alt="">
-                        </div>
-                        <div style="margin-top: 5%;margin-left: 10%" class="col">
-                            <h4 class="card-title mb-2">Visit Statistics</h4>
-                            <h4 class="card-title mb-2">
-                                <!-- Rating -->
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                                <i class="mdi mdi-star"></i>
-                            </h4>
-                        </div>
-                    </div>
+                    <?php
+                        if ($i <= 4) {
+                            break;
+                        }
+                        $i++;
+                    } ?>
                 </div>
             </div>
         </div>
     </div>
+</div>

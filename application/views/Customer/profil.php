@@ -118,13 +118,14 @@
                                     <?php
                                     } else {
                                     ?>
-                                        <div id="rating" style="display: none;" class=”dropdown”>
+                                        <div id="rating" class=”dropdown”>
                                             <div class="btn-group">
-                                                <button class="badge badge-secondary dropdown-toggle mb-3" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                    Rating
+                                                <button class="badge badge-primary dropdown-toggle mb-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                    Diterima
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <p style="text-align: center; margin-bottom: 1px;"><b>Berikan Rating</b></p>
+                                                    <div class="btn-group mt-1" role="group" aria-label="Basic example">
                                                         <a href="<?= base_url('') ?>Pesanan/stterima?id_pesanan=<?= $p['id']; ?>&r=1" class="badge badge-secondary ml-2">1</a>
                                                         <a href="<?= base_url('') ?>Pesanan/stterima?id_pesanan=<?= $p['id']; ?>&r=2" class="badge badge-secondary ml-2">2</a>
                                                         <a href="<?= base_url('') ?>Pesanan/stterima?id_pesanan=<?= $p['id']; ?>&r=3" class="badge badge-secondary ml-2">3</a>
@@ -134,8 +135,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a style="display: flex;" id="btn2" onclick="showDiv()" class="text-white badge badge-primary rounded-pill d-inline">Diterima</a>
-                                        <a style="display: flex;" id="btn2" href="<?= base_url('') ?>Pesanan/belum?id_pesanan=<?= $p['id']; ?>" class="badge badge-secondary rounded-pill d-inline">Belum</a>
+                                        <div class="mt-1">
+                                            <a id="btn2" href="<?= base_url('') ?>Pesanan/belum?id_pesanan=<?= $p['id']; ?>" class="p-1 badge badge-secondary">Belum</a>
+                                        </div>
                                     <?php
                                     }
                                     ?>

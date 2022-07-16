@@ -16,7 +16,7 @@
                 <h3>
                     <dt style="text-align: center;"><?= $b['nama']; ?></dt>
                     <dt>Stok : <?= $b['stok']; ?></dt>
-                    <dt>Harga : <?= $b['harga']; ?></dt>
+                    <dt>Harga : <?= number_format($b['harga']); ?></dt>
                 </h3>
                 <span class="date">
                     <div class="cell">

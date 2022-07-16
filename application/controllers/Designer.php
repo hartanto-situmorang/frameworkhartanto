@@ -99,9 +99,15 @@ class Designer extends CI_Controller
         }
 
         // start hitung
-        $data['persentcelana'] = number_format($cel / ($aks + $pak + $cel) * 100, 2);
-        $data['persentaksesories'] = number_format($aks / ($aks + $pak + $cel) * 100, 2);
-        $data['persentpakaian'] = number_format($pak / ($aks + $pak + $cel) * 100, 2);
+        if ($cel != 0 || $pak != 0 || $aks != 0) {
+            $data['persentcelana'] = number_format($cel / ($aks + $pak + $cel) * 100, 2);
+            $data['persentaksesories'] = number_format($aks / ($aks + $pak + $cel) * 100, 2);
+            $data['persentpakaian'] = number_format($pak / ($aks + $pak + $cel) * 100, 2);
+        } else {
+            $data['persentcelana'] = 0;
+            $data['persentaksesories'] = 0;
+            $data['persentpakaian'] = 0;
+        }
         $data['jmlcelana'] = $jmlcel;
         $data['jmlpakaian'] = $jmlpak;
         $data['jmlaks'] = $jmlaks;

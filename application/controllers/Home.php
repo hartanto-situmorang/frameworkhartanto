@@ -33,6 +33,7 @@ class Home extends CI_Controller
     // Pendaftaran
     public function regis()
     {
+        $data['designer'] = $this->Designer->get();
         if ($this->session->userdata('email')) {
             redirect('Home');
         }
@@ -69,6 +70,7 @@ class Home extends CI_Controller
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'alamat' => $this->input->post('alamat'),
+                'gambar' => 'default.jpg',
                 'password' =>  password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'tgl_bergabung' => time(),
             ];
@@ -76,6 +78,7 @@ class Home extends CI_Controller
                 'gambar' => htmlspecialchars($this->input->post('gambar', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'role' => $this->input->post('role'),
+                'gambar' => 'default.jpg',
                 'password' =>  password_hash($this->input->post('password'), PASSWORD_DEFAULT)
             ];
             if ($this->input->post('role') == 'customer') {

@@ -42,7 +42,7 @@
         var data = google.visualization.arrayToDataTable([
             ['Kateogir', 'Penjualan'],
             ['Pakaian', <?= $penjualan[2]['jumlah']; ?>],
-            ['Celana', <?= $penjualan[0]['jumlah']; ?>],
+            ['Celana', <?= $penjualan[1]['jumlah']; ?>],
             ['Aksesories', <?= $penjualan[0]['jumlah']; ?>]
         ]);
 
