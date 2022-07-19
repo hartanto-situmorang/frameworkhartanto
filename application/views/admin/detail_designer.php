@@ -13,10 +13,12 @@
                         <div class="d-flex flex-row align-items-center mb-6 mb-2">
                             <?php
                             $i = 0;
-                            foreach (range(1, $designer['rating']) as $number) {
-                                $i++; ?>
-                                <p style="margin: 0;color: yellowgreen; font-size: 170%;" class="mdi mdi-star"></p>
+                            if ($designer['rating'] != 0) {
+                                foreach (range(1, $designer['rating']) as $number) {
+                                    $i++; ?>
+                                    <p style="margin: 0;color: yellowgreen; font-size: 170%;" class="mdi mdi-star"></p>
                                 <?php
+                                }
                             }
                             if ($i < 5) {
                                 foreach (range($i, 4) as $number) {

@@ -37,7 +37,7 @@ class Barang_user extends CI_Controller
         $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
         $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
         $this->load->view("Content/header", $data);
-        $this->load->view("Barang/pakaian", $data);
+        $this->load->view("Barang/all", $data);
         $this->load->view("Content/footer", $data);
     }
     public function celana()
@@ -50,7 +50,20 @@ class Barang_user extends CI_Controller
         $where['jenis'] = 'celana';
         $data['Barang'] = $this->Barang->get_where($where);
         $this->load->view("Content/header", $data);
-        $this->load->view("Barang/Celana", $data);
+        $this->load->view("Barang/all", $data);
+        $this->load->view("Content/footer", $data);
+    }
+    public function all()
+    {
+        $data['header'] = "berbelanja";
+        $data['user'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user2'] = $this->customer->getByemail();
+        $data['NotifPesanan'] = $this->Pesanan->notifc($data['user2']['id']);
+        $data['jmlnotif'] = $this->Pesanan->notifcountc($data['user2']['id']);
+        $where['jenis'] = 'celana';
+        $data['Barang'] = $this->Barang->get();
+        $this->load->view("Content/header", $data);
+        $this->load->view("Barang/all", $data);
         $this->load->view("Content/footer", $data);
     }
     public function aksesories()

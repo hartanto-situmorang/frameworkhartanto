@@ -125,6 +125,7 @@
                                 </a>
                                 <div class="submenu">
                                     <ul>
+                                        <li class="nav-item"><a class="nav-link" href="<?= base_url('Barang_user/all') ?>">Semua Barang</a></li>
                                         <li class="nav-item"><a class="nav-link" href="<?= base_url('Barang_user/pakaian') ?>">Pakaian</a></li>
                                         <li class="nav-item"><a class="nav-link" href="<?= base_url('Barang_user/celana') ?>">Celana</a></li>
                                         <li class="nav-item"><a class="nav-link" href="<?= base_url('Barang_user/aksesories') ?>">Aksesories</a></li>

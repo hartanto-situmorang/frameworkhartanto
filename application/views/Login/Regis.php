@@ -83,7 +83,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <a style="text-decoration: none;" href="<?= base_url('Barang_user/pakaian') ?>" class="btn-secondary btn-rounded btn-sm" data-mdb-ripple-color="dark">Berbelanja</a>
+                                                <a style="text-decoration: none;" href="<?= base_url('Barang_user/all') ?>" class="btn-secondary btn-rounded btn-sm" data-mdb-ripple-color="dark">Berbelanja</a>
                                                 <a style="text-decoration: none;" href="<?= base_url('Customer/detail_designer') ?>?id_d=<?= $des['id'] ?>" class="btn-primary btn-rounded btn-sm" data-mdb-ripple-color="dark">Lihat Profile</a>
                                             </div>
                                         </div>

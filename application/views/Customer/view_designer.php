@@ -20,10 +20,12 @@
                                                 <?php
                                                 $i = 1;
                                                 if ($des['rating'] != 0) {
-                                                    foreach (range($i, $des['rating']) as $number) {
-                                                        $i++; ?>
-                                                        <p style="margin: 0;color: yellowgreen; font-size: 130%;" class="mdi mdi-star"></p>
-                                                    <?php
+                                                    if ($des['rating'] != 0) {
+                                                        foreach (range($i, $des['rating']) as $number) {
+                                                            $i++; ?>
+                                                            <p style="margin: 0;color: yellowgreen; font-size: 130%;" class="mdi mdi-star"></p>
+                                                        <?php
+                                                        }
                                                     }
                                                 }
                                                 if ($i < 5) {
@@ -37,7 +39,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <a href="<?= base_url('Barang_user/pakaian') ?>" class="btn-secondary btn-rounded btn-sm" data-mdb-ripple-color="dark">Berbelanja</a>
+                                            <a href="<?= base_url('Barang_user/all') ?>" class="btn-secondary btn-rounded btn-sm" data-mdb-ripple-color="dark">Berbelanja</a>
                                             <a href="<?= base_url('Customer/detail_designer') ?>?id_d=<?= $des['id'] ?>" class="btn-primary btn-rounded btn-sm" data-mdb-ripple-color="dark">Lihat Profile</a>
                                         </div>
                                     </div>

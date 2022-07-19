@@ -106,11 +106,14 @@ class Admin extends CI_Controller
     {
         $status = $_GET['id_d'];
         $data['designer'] =  $this->designer->getpresentasi();
+        $data2['d'] = $this->designer->getById($status);
+
 
         //Perhitungan Bonus Berdasarkan Rating dan penjualan
         $rating = 0;
         $jmljual = 0;
         $sumalljual = 0;
+
         foreach ($data['designer'] as $d) {
             $sumalljual += $d['jumlah'];
             if ($status == $d['id']) {
@@ -118,12 +121,14 @@ class Admin extends CI_Controller
                 $rating = $d['rating'];
             }
         }
+
         $jual = ($jmljual / $sumalljual) * 100;
         $bonus = $jual * (100000 * $rating);
+        $bonus = $bonus+$data2['d']['Bonus'];
         //Perhitungan Bonus Berdasarkan Rating dan penjualan
         
         $this->designer->hapusbyadmin(['id' => $status], ['bonus' => $bonus]);
-        $this->session->set_flashdata('message', '<div class="alert alert-danger m-4" role="alert">Bonus Berhasil diberikan Kepada Designer!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger m-4" role="alert">Bonus Berhasil diberikan Kepada Designer Sebesar <b>Rp.'.number_format($bonus).'</b>,00-</div>');
         redirect('Admin/designer');
     }
 }

@@ -1,6 +1,7 @@
 <?= $this->session->flashdata('message'); ?>
-<div class="container">
-    <div class="d-flex justify-content-center align-items-center ">
+
+<div class="m-4" style="padding: 0% 20% 0 20%;">
+    <div class="d-flex justify-content-center align-items-center">
         <div class="col col-md-6 col-lg-6 col-xl m-2">
             <h2>Data Pesanan</h2>
             <table class="table align-middle mb-0 bg-white">

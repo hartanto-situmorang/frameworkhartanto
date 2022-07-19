@@ -4,7 +4,7 @@
             <div class="row g-2">
                 <div class="col-md-5 gradient-custom text-center text-white" style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                     <img src="<?= base_url('aset/') ?>images/faces/<?= $designer['gambar']; ?>" alt="Avatar" class="img-fluid my-4" style="width: 80%; border-radius: 20%;" />
-                    <a href="<?= base_url('Barang_user/pakaian') ?>" type="button" class="btn btn-secondary" data-mdb-ripple-color="dark">Berbelanja</a>
+                    <a href="<?= base_url('Barang_user/all') ?>" type="button" class="btn btn-secondary" data-mdb-ripple-color="dark">Berbelanja</a>
                 </div>
                 <div class="col-md-7">
                     <div class="card-body p-4">
@@ -12,10 +12,12 @@
                         <div class="d-flex flex-row align-items-center mb-6 mb-2">
                             <?php
                             $i = 0;
+                            if ($designer['rating'] != 0) {
                             foreach (range(1, $designer['rating']) as $number) {
                                 $i++; ?>
                                 <p style="margin: 0;color: yellowgreen; font-size: 170%;" class="mdi mdi-star"></p>
                                 <?php
+                            }
                             }
                             if ($i < 5) {
                                 foreach (range($i, 4) as $number) {
