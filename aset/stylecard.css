@@ -1,0 +1,67 @@
+:root {
+    --clr-primary: #651fff;
+    --clr-gray: #37474f;
+    --clr-gray-light: #b0bec5;
+  }
+  
+.semua {
+    /* box-sizing: border-box; */
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .wrrr {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 20rem);
+    justify-content: center;
+  }
+  
+  .konten{
+    overflow: hidden;
+    box-shadow: 0px 2px 8px 0px var(--clr-gray-light);
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    margin: 5 6  5 25;
+  }
+  
+  .gambarp {
+    position: absolute;
+    height: 10rem;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .produk {
+    width: 9rem;
+    clip-path: circle(90px at center);
+    margin: 0;
+  }
+  
+  .name {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .deskripsi {
+    margin: 1rem 2rem;
+    font-size: 0.9rem;
+  }
+  
+  .tombol {
+    width: 50%;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    padding: 2%;
+    margin: 5%;
+    border-radius: 20px;
+    background-color: var(--clr-primary);
+  }
+  

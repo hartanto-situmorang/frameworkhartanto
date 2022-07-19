@@ -7,9 +7,10 @@ html {
 }
 
 .center {
-  align-items: center;
-  justify-content: center;
-	margin: 2%;
+	align-items: center;
+	justify-content: center;
+	margin-top:0 ;
+	margin-left: 0;
 }
 
 .d1 {
@@ -38,22 +39,32 @@ html {
 }
 
 .login {
-  box-shadow: -2px -1px 21px -4px rgba(162, 111, 111, 0.28);
-  width: 90%;
-  border-radius: 30px;
-  height: 500px;
+	box-shadow: -2px -1px 21px -4px rgba(162, 111, 111, 0.28);
+	width: 90%;
+	border-radius: 30px;
+	height: 500px;
 	padding: 50px;
 	margin: 0;
-	background-color:  #BDE6F1;
+	background-color: #BDE6F1;
+}
+.regis {
+	box-shadow: -2px -1px 21px -4px rgba(162, 111, 111, 0.28);
+	width: 90%;
+	border-radius: 30px;
+	height: 590px;
+	padding: 50px;
+	margin: 0;
+	background-color: #BDE6F1;
 }
 
 .login form {
 	background-color: #BDE6F1;
 }
+
 .login h2 {
 	font-size: 30px;
 	color: #000000;
-  margin-bottom: 40px;
+	margin-bottom: 40px;
 }
 
 .login label {
