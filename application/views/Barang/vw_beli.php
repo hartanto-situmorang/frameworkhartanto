@@ -9,7 +9,7 @@
                             <img src="<?= base_url('aset/') ?>images/barang/<?= $barang['gambar']; ?>" alt="Generic placeholder image" class="img-fluid m-3" style="width: 100%; border-radius: 10px;">
                         </div>
                         <div class="p-5 m-0">
-                            <form id="beli" action="<?= base_url('') ?>Pesanan/Pesanan" style="max-width: 500px;min-width: 200px;" method="POST" enctype="multipart/form-data" onsubmit="return chek()" >
+                            <form id="beli" action="<?= base_url('') ?>Pesanan/Pesanan" style="max-width: 500px;min-width: 200px;" method="POST" enctype="multipart/form-data" onsubmit="return chek()">
                                 <div class="form-outline mb-2">
                                     <b><label class="form-label" for="form1Example1">Nama</label></b><br>
                                     <b><label class="form-label" for="form1Example1"><?= $barang['id_design']; ?></label></b><br>
@@ -98,7 +98,7 @@
         let jumlah = parseInt(document.getElementById("jumlah").value);
         let stok = parseInt(document.getElementById("stok").value);
         let harga = parseInt(document.getElementById("harga").value);
-        let total = (harga*jumlah);
+        let total = (harga * jumlah);
         if (jumlah <= 0) {
             alert("Jumlah Barang Yang Dibeli Minimal 1");
             document.getElementById("jumlah").value = 1;
@@ -120,17 +120,22 @@
         let jumlah = parseInt(document.getElementById("jumlah").value);
         let harga = parseInt(document.getElementById("harga").value);
         let bayar = parseInt(document.getElementById("bayar").value);
+        let gambar = document.getElementById("gambar");
         let total = jumlah * harga;
         document.getElementById("totalharga").value = total;
-        if (bayar < total) {
-            alert("Harap Masukkan Harga Bayar yang sesuai !!")
-            return false;
-        } else {
+
+        if (bayar > total && bayar != NaN) {
             if (confirm('Apakah Anda Yakin ??') == true) {
                 return true;
             } else {
                 return false;
             }
+        } else if (bayar == NaN) {
+            alert("Harap Masukkan Harga Bayar yang sesuai Harga !!")
+            return false;
+        } else {
+            alert("Terdapat Eror Pada Data !!")
+            return false;
         }
     }
 </script>

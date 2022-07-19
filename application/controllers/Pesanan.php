@@ -55,19 +55,25 @@ class Pesanan extends CI_Controller
                     'tanggal' => time(),
                     'gambar' => $new_image,
                 ];
+
+                try {
+                    $this->Pesanan->insert($data);
+                    $id = $this->input->post('id_barang');
+                    $where = ($sisa = $data2['barang']['stok']) - $jumlah;
+                    $this->Barang->updatestok(['id' => $id], ['stok' => $where]);
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Pesanan Berhasil Dikirim!</div>');
+                    redirect('Customer/profile');
+                } catch (\Throwable $th) {
+                    echo 'Eror Pada :' . $th;
+                    redirect('Barang');
+                }
             } else {
-                echo $this->upload->display_errors();
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal Melakukan Transaksi, Anda Belum melakukan Transaksi!</div>');
+                redirect('Customer/dasboard');
             }
-        }
-        try {
-            $this->Pesanan->insert($data);
-            $id = $this->input->post('id_barang');
-            $where = ($sisa = $data2['barang']['stok']) - $jumlah;
-            $this->Barang->updatestok(['id' => $id], ['stok' => $where]);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Pesanan Berhasil Dikirim!</div>');
-            redirect('Customer/profile');
-        } catch (\Throwable $th) {
-            echo 'Eror Pada :' . $th;
+        }else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger m-4 p-2" role="alert">Gagal Melakukan Transaksi, Anda Belum melakukan Transfer Dana!</div>');
+            redirect('Customer/dasboard');
         }
     }
 
@@ -77,15 +83,15 @@ class Pesanan extends CI_Controller
         $status = $_GET['id_pesanan'];
         $data['pesanan'] = $this->Pesanan->getById($status);
         $data['designer'] = $this->designer->getById($data['pesanan']['id_designer']);
-        $hitung = round(($data['designer']['rating'] + $_GET['r'])/2);
+        $hitung = round(($data['designer']['rating'] + $_GET['r']) / 2);
         $status = $_GET['id_pesanan'];
         $data2 = "";
         $data2['id'] == '0';
         $data2['tanggal'] == time();
-        
+
         $this->Pesanan->terima(['id' => $status], ['status' => 'Terima']);
         $data2 = $this->Pesanan->getById($status);
-        $this->designer->update(['id' => $data['pesanan']['id_designer']],['rating' => $hitung]);
+        $this->designer->update(['id' => $data['pesanan']['id_designer']], ['rating' => $hitung]);
         $this->Transaksi->insert($data2);
         $this->Pesanan->delete($status);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Transaksi Berhasil !!</div>');
@@ -99,9 +105,9 @@ class Pesanan extends CI_Controller
 
         $data['user'] = $this->userrole->getBy();
         $data['user2'] = $this->designer->getByemail();
-        $id= $_GET['id_pesanan'];
+        $id = $_GET['id_pesanan'];
         $where['id'] = ['sudah'];
-        $this->Pesanan->baca(['id' => $id],['baca' => 'belum']);
+        $this->Pesanan->baca(['id' => $id], ['baca' => 'belum']);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Pesanan Berhasil Diubah!</div>');
         redirect('Customer/profile');

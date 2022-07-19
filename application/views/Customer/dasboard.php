@@ -3,7 +3,6 @@
     <div class="d-flex justify-content-center align-items-center ">
         <div class="col col-md-6 col-lg-6 col-xl m-2">
             <h2>Data Pesanan</h2>
-            <?= $this->session->flashdata('message'); ?>
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
                     <tr>
@@ -98,7 +97,6 @@
     <div class="d-flex container-xxl justify-content-center align-items-center ">
         <div class="col col-md-6 col-lg-7 col-xl">
             <h2>Data Transaksi</h2>
-            <?= $this->session->flashdata('message'); ?>
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
                     <tr>
