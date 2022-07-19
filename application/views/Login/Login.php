@@ -23,7 +23,12 @@
                             <input name="password" type="password" class="form-control" value="<?= set_value('password'); ?>" id="password" placeholder="Masukkan Password">
                             <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
                         </div>
-                        <button style="width: 100%;" type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-group">
+                            <button style="width: 100%;" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        <div class="form-group">
+                            <a style="text-decoration: none;" href="<?= base_url('home/chek') ?>">Lupa Password</a>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -38,7 +43,7 @@
                                 <div class="card-body p-3 text-black">
                                     <div class="d-flex align-items-center mb-6">
                                         <div class="flex-shrink-0">
-                                            <img src="<?= base_url('aset/') ?>images/faces/<?= $des['gambar']; ?>" alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3" style="width: 70px;">
+                                            <img src="<?= base_url('aset/') ?>images/faces/<?= $des['gambar']; ?>" alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3" style="max-width: 70px;height: auto;">
                                         </div>
                                         <div class="flex ms-3">
                                             <div class="d-flex flex-row align-items-center mb-6">
@@ -53,7 +58,7 @@
                                                         <?php
                                                         }
                                                     }
-                                                    if ($i < 5) {
+                                                    if ($i <= 5) {
                                                         foreach (range($i, 5) as $number) {
                                                             $i++; ?>
                                                             <p style="margin: 0;font-size: 130%;" class="mdi mdi-star"></p>

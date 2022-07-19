@@ -40,7 +40,7 @@
                                 <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Daftarkan</button>
                             </div>
                             <div class="text-center mt-4 font-weight-light">
-                                Sudah Punya akun? <a href="login.html" class="text-primary">Login</a>
+                                Sudah Punya akun? <a href="<?= base_url('Home/login') ?>" class="text-primary">Login</a>
                             </div>
                         </form>
                     </div>

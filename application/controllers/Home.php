@@ -163,4 +163,62 @@ class Home extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Logout! </div>');
         redirect('Home');
     }
+
+    public function chek()
+    {
+        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email', [
+            'valid_email' => 'Email Harus Valid',
+            'required' => 'Email Wajib di isi'
+        ]);
+        $email = $this->input->post('email');
+        $data['email'] = $this->input->post('email');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('login/header', $data);
+            $this->load->view('admin/chek_email', $data);
+            $this->load->view('login/footer', $data);
+        } else {
+            if ($this->db->get_where('akun', ['email' => $email])->row_array()) {
+                $this->load->view('login/header', $data);
+                $this->load->view('admin/lupapassword', $data);
+                $this->load->view('login/footer', $data);
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Anda Tidak Terdaftar! </div>');
+                $this->load->view('login/header', $data);
+                $this->load->view('admin/chek_email', $data);
+                $this->load->view('login/footer', $data);
+            }
+        }
+    }
+
+    public function lupapassword()
+    { 
+        $email = $this->input->post('email');
+        $data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+        $this->form_validation->set_rules('password', 'Password', 'required|trim', [
+            'required' => 'Password Harus disi'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $this->load->view('login/header', $data);
+            $this->load->view('admin/lupapassword', $data);
+            $this->load->view('login/footer', $data);
+        } else {
+            $user = $this->db->get_where('akun', ['email' => $email])->row_array();
+            echo $email;
+            print_r($user);
+            if ($user['role'] == 'customer') {
+                $this->akun->update(['email' => $email], $data);
+                $this->customer->update(['email' => $email], $data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password Berhasil Diubah ! </div>');
+                redirect('Home/Login');
+            } else if ($user['role'] == 'designer') {
+                $this->akun->update(['email' => $email], $data);
+                $this->Designer->update(['email' => $email], $data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password Berhasil Diubah ! </div>');
+                redirect('Home/Login');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Akun ini tidak dapat mengedit password! </div>');
+            }
+        }
+    }
 }

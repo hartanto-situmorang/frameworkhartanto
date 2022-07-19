@@ -123,7 +123,7 @@ class Customer extends CI_Controller
                 $email = $this->session->userdata('email');
                 $this->akun->update(['email' => $email], $data2);
 
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Diubah!</div>');
+                $this->session->set_flashdata('message',"swal('Good job!', 'You clicked the button!', 'success')");
                 if ($this->session->userdata('email') != $this->input->post('email')) {
                     redirect('Home/lougout');
                 }else{

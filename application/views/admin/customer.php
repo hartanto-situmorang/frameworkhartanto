@@ -12,7 +12,7 @@
                             <div class="card-body p-3 text-black" >
                                 <div class="d-flex align-items-center mb-6">
                                     <div class="flex-shrink-0">
-                                        <img src="<?= base_url('aset/') ?>images/barang/<?= $c['gambar']; ?>" alt="Tidak Ditemukan" class="img-fluid rounded-circle border border-dark border-3" style="max-width: 70px;">
+                                        <img src="<?= base_url('aset/') ?>images/barang/<?= $c['gambar']; ?>" alt="Tidak Ditemukan" class="img-fluid rounded-circle border border-dark border-3" style="max-height: 70px;">
                                     </div>
                                     <div class="flex ms-3">
                                         <div class="d-flex flex-row align-items-center mb-6">

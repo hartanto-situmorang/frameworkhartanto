@@ -2,7 +2,7 @@
 </div>
 </div>
 </div>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="<?= base_url('aset/') ?>vendors/base/vendor.bundle.base.js"></script>
 <script src="<?= base_url('aset/') ?>js/template.js"></script>
 <script src="<?= base_url('aset/') ?>vendors/typeahead.js/typeahead.bundle.min.js"></script>
